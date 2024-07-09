@@ -2,25 +2,30 @@ class ParseHandle:
     
 
     class InputParse:
-        def __init__(self,):
-            self = self 
-        def ParseParam(self, p_str, pass_param):
-            """Entry point, passing usr_io string and initial parameters."""
+        """Parse input data and flags or return exceptions"""
 
-            self.setting = pass_param   
-            self.p_str = p_str
+        def __init__(self,): 
+            self = self
 
-           # set = self.setting
-            print (self.setting)            
-            print (self.p_str)
-            
+
+        def ParseParam(p_str, pass_param):
+            """Entry point, passing usr_io string to initial parameters."""
+            flags = []
             slen = len(p_str)
-            c = 0    
+            c = 0
+            d = 1
+            print(slen)
             while c < slen:
-                if p_str[c] == '-':
-                    pass 
-                c += c
-
+                if p_str[c] == '-' and p_str[d] != '-':
+                    print(p_str[d])
+                    while p_str[c].isspace() or p_str[c] != '-':
+                        print(p_str[c])
+                        flags.append(p_str[c]) 
+                        d += 1
+                        c += 1
+                print(flags)        
+                c += 1
+                d += 1
     def __init__(self,):
         self = self
     #     self.param_init = self.param_init    
@@ -38,7 +43,7 @@ class ParseHandle:
             'verbose': None,
             'data_type_in': None,
             'compare': None,
-            'time_Complex': None,
+            'time_complex': None,
             'colorize': None,
             'log': None,
             'data_div': None
@@ -53,4 +58,5 @@ class ParseHandle:
 if __name__ == "__main__":
     in_usr = ParseHandle.usr_io()
     in_prm = ParseHandle.set_param()
-
+    print(in_prm)
+    ParseHandle.InputParse.ParseParam(in_usr, in_prm)
