@@ -9,23 +9,32 @@ class ParseHandle:
 
 
         def ParseParam(p_str, pass_param):
+
             """Entry point, passing usr_io string to initial parameters."""
             flags = []
             slen = len(p_str)
             c = 0
-            d = 1
-            print(slen)
             while c < slen:
-                if p_str[c] == '-' and p_str[d] != '-':
-                    print(p_str[d])
-                    while p_str[c].isspace() or p_str[c] != '-':
-                        print(p_str[c])
-                        flags.append(p_str[c]) 
-                        d += 1
-                        c += 1
-                print(flags)        
+                d = c + 1
+                if p_str[c] == '-'and p_str[d] != '-':     #check flag for abbr. or verbode format.
+                    flg_e = p_str.find(' ', c)          
+                    if flg_e == -1:                        #check for string end by index reversal.
+                        flg_e = slen + 1
+                    flg = p_str[d:flg_e]
+                    value = ''
+                    for i in flg:
+                        if p_str[d+1] != '=' and not value:
+                            flags.append(i)
+                            print (flags)
+                            d += 1
+                        elif i == '=':
+                            value = p_str[d:flg_e]
+                            flags.append(value)
+                            print(flags)
+                            d == flg_e
+                            break
+                        print(d)
                 c += 1
-                d += 1
     def __init__(self,):
         self = self
     #     self.param_init = self.param_init    
@@ -58,5 +67,4 @@ class ParseHandle:
 if __name__ == "__main__":
     in_usr = ParseHandle.usr_io()
     in_prm = ParseHandle.set_param()
-    print(in_prm)
     ParseHandle.InputParse.ParseParam(in_usr, in_prm)
