@@ -11,30 +11,23 @@ class ParseHandle:
         def ParseParam(p_str, pass_param):
 
             """Entry point, passing usr_io string to initial parameters."""
-            flags = []
-            slen = len(p_str)
-            c = 0
-            while c < slen:
+            for c, p in enumerate(p_str):
                 d = c + 1
-                if p_str[c] == '-'and p_str[d] != '-':     #check flag for abbr. or verbode format.
-                    flg_e = p_str.find(' ', c)          
-                    if flg_e == -1:                        #check for string end by index reversal.
-                        flg_e = slen + 1
-                    flg = p_str[d:flg_e]
-                    value = ''
-                    for i in flg:
-                        if p_str[d+1] != '=' and not value:
-                            flags.append(i)
-                            print (flags)
-                            d += 1
-                        elif i == '=':
-                            value = p_str[d:flg_e]
-                            flags.append(value)
-                            print(flags)
-                            d == flg_e
-                            break
-                        print(d)
-                c += 1
+                if p == '-' and p_str[d] != '-':
+                    flg_e = p_str.find(' ', c)
+                    if flg_e == -1:
+                        flg_grp = p_str[d:]
+                        print(flg_grp)
+                    else:
+                        flg_grp = p_str[d:flg_e]
+                        print(flg_e) 
+                        print(flg_grp)
+                    if flg_grp.find('='):
+                        val_b = flg_grp.index('=')
+                        key_e = val_b - 1
+                        key = flg_grp[d:key_e]
+                        print(key)
+                        
     def __init__(self,):
         self = self
     #     self.param_init = self.param_init    
