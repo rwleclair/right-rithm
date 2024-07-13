@@ -31,7 +31,12 @@ class ParseHandle:
                         if key:                         #append if key val pair.
                             for i in key:
                                 flags.append(i)
-                        flags.append(key_val)
+                        kv_loc = key_val.find('=')
+                        k_e = kv_loc - 1
+                        v_b = kv_loc + 1
+                        k = key_val[k_e]
+                        v = key_val[v_b:]
+                        flags.append((k, v))
                         print(flags)
                     
                     else:                               #append if no key value.
