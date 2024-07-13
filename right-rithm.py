@@ -15,23 +15,26 @@ class ParseHandle:
 
                 d = c + 1
                 
-                if p == '-' and p_str[d] != '-':
+                if p == '-' and p_str[d] != '-':        #check input for flags by groups.
                     flg_e = p_str.find(' ', c)
-                    if flg_e == -1:
+                    if flg_e == -1:                     #end of string.
                         flg_grp = p_str[d:]
                     else:
                         flg_grp = p_str[d:flg_e]
-                    if '=' in flg_grp:
+
+                    if '=' in flg_grp:                  #check for key value.
                         eq_loc = flg_grp.index('=')
                         key_e = eq_loc - 1
                         key_val = flg_grp[key_e:]
                         key = flg_grp[c:key_e]
-                        if key:
+
+                        if key:                         #append if key val pair.
                             for i in key:
                                 flags.append(i)
                         flags.append(key_val)
                         print(flags)
-                    else:
+                    
+                    else:                               #append if no key value.
                         for i in flg_grp:
                             flags.append(i)
                         print(flags)
